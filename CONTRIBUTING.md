@@ -100,13 +100,14 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/overla
 3. Create a branch on your fork. You should either add in the GitHub issue
    number to the branch name, e.g. `382_adds-in-new-thing` or ensure that the
    issue is referenced in the Pull Request or commit message.
-4. We do not enforce a commit style like
+4. If you want to build locally look at [LOCAL.md](./LOCAL.md).
+5. We do not enforce a commit style like
    [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), but
    you are welcome to use one so long as the summary line accurately describes
    the overall purpose of the work and the ticket is referenced either in the PR
    or the body of the commit message. See [Commits](https://github.com/overlayeddev/overlayed/commits/main) for example
    commits.
-5. When ready, put up a PR that links from your fork.
+6. When ready, put up a PR that links from your fork.
 
 ## References
 

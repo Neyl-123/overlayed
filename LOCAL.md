@@ -40,12 +40,12 @@ If you want to use a mocked response you can run this command in the `apps/web` 
 
 ```
 pnpm start:mocked
-
 ```
 
 ### 4. Building the latest version locally
+To build locally without the signing keys and updater artifacts use the following command instead of pnpm build:desktop.
 ```
-pnpm build:desktop
+pnpm build:local
 ```
 
 ### 5. Building the canary version locally
