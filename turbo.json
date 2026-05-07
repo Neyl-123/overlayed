@@ -29,6 +29,8 @@
         ".vercel/output/**"
       ]
     },
+    "build:desktop": {},
+    "build:local": {},
     "lint": {},
     "clean": {
       "cache": false

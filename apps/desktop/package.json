@@ -8,13 +8,14 @@
     "start:canary": "tauri dev --config \"src-tauri/tauri.conf.canary.json\"",
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:canary": "tauri build --config \"src-tauri/tauri.conf.canary.json\"",
+    "build:canary": "cross-env NO_STRIP=1 tauri build --config \"src-tauri/tauri.conf.canary.json\"",
     "generate:commit-hash": "node scripts/generate-commit-hash.js",
     "lint": "eslint",
     "clean": "rm -rf dist .turbo node_modules src-tauri/target",
     "check:format": "prettier --check 'src/**/*.{ts,js,tsx,jsx}'",
     "format": "prettier --write .",
-    "build:desktop": "tauri build",
+    "build:desktop": "cross-env NO_STRIP=1 tauri build",
+    "build:local": "cross-env NO_STRIP=1 tauri build --config '{\"bundle\": {\"createUpdaterArtifacts\": false}, \"plugins\": {\"updater\": {\"pubkey\": \"\"}}}'",
     "preview": "vite preview",
     "tauri": "tauri"
   },
@@ -72,6 +73,7 @@
     "postcss": "^8.5.1",
     "tailwindcss": "^4.0.5",
     "tsconfig": "workspace:*",
-    "vite": "^6.1.0"
+    "vite": "^6.1.0",
+    "cross-env": "^7.0.3"
   }
 }
