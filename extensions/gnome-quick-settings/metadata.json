@@ -1,0 +1,6 @@
+{
+  "name": "Overlayed Pin Toggle",
+  "description": "A quick setting toggle for pinning the Overlayed window.",
+  "uuid": "overlayed-pin-toggle@overlayed.dev",
+  "shell-version": ["49"]
+}
