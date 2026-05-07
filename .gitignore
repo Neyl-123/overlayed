@@ -42,8 +42,8 @@ yarn-error.log*
 binaries/
 
 apps/desktop/src-tauri/*.txt
+apps/desktop/src-tauri/gen/schemas/linux-schema.json
 
 tsconfig.tsbuildinfo
 assets/stable
 assets/canary
-apps/desktop/src-tauri/gen/schemas/linux-schema.json
