@@ -11,6 +11,8 @@ mod app_handle;
 mod commands;
 mod constants;
 mod tray;
+#[cfg(target_os = "linux")]
+mod dbus;
 mod window_custom;
 
 use crate::commands::*;
@@ -159,6 +161,28 @@ fn main() {
         width: SETTINGS_WINDOW_WIDTH,
         height: SETTINGS_WINDOW_HEIGHT,
       });
+
+      #[cfg(target_os = "linux")]
+      {
+          let app_handle = app.app_handle().clone();
+          tauri::async_runtime::spawn(async move {
+              let pin_control = dbus::PinControl::new(app_handle.clone());
+              let _conn = zbus::ConnectionBuilder::session()
+                  .expect("Failed to build D-Bus connection")
+                  .name("dev.overlayed")
+                  .expect("Failed to request D-Bus name")
+                  .serve_at("/dev/overlayed/PinControl", pin_control)
+                  .expect("Failed to serve PinControl interface")
+                  .build()
+                  .await
+                  .expect("Failed to initialize D-Bus connection");
+
+              app_handle.manage(_conn);
+
+              // keep the connection alive
+              std::future::pending::<()>().await;
+          });
+      }
 
       Ok(())
     })

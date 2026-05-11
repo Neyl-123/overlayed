@@ -199,6 +199,9 @@ fn _set_pin(
 
   // update the tray icon
   update_tray_icon(window.app_handle(), value);
+
+  #[cfg(target_os = "linux")]
+  crate::dbus::emit_pin_changed(window.app_handle(), value);
 }
 
 pub fn update_tray_icon(app: &AppHandle, pinned: bool) {
