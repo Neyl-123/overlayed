@@ -140,7 +140,7 @@ fn apply_taskbar_visibility(app: &AppHandle, pinned: bool, hide_taskbar_when_pin
   }
 }
 
-fn _set_pin(
+pub fn _set_pin(
   value: bool,
   window: &WebviewWindow,
   pinned: State<Pinned>,

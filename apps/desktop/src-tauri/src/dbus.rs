@@ -1,7 +1,7 @@
 use std::sync::atomic::Ordering;
 use tauri::{AppHandle, Manager};
 use zbus::interface;
-use crate::{commands::_set_pin, Pinned, TrayMenu};
+use crate::{commands::_set_pin, HideTaskbarWhenPinned, Pinned, TrayMenu};
 
 pub struct PinControl {
     app: AppHandle,
@@ -27,8 +27,9 @@ impl PinControl {
         let window = self.app.get_webview_window(crate::constants::MAIN_WINDOW_NAME)
             .ok_or_else(|| zbus::fdo::Error::Failed("Window not found".into()))?;
         let menu = self.app.state::<TrayMenu>();
+        let hide_taskbar = self.app.state::<HideTaskbarWhenPinned>();
         
-        _set_pin(new_val, &window, pinned_state, menu);
+        _set_pin(new_val, &window, pinned_state, menu, hide_taskbar);
         
         // Signal emission is handled by `_set_pin` via `emit_pin_changed`
         Ok(new_val)
@@ -48,8 +49,9 @@ impl PinControl {
         let window = self.app.get_webview_window(crate::constants::MAIN_WINDOW_NAME)
             .ok_or_else(|| zbus::fdo::Error::Failed("Window not found".into()))?;
         let menu = self.app.state::<TrayMenu>();
+        let hide_taskbar = self.app.state::<HideTaskbarWhenPinned>();
         
-        _set_pin(value, &window, pinned_state, menu);
+        _set_pin(value, &window, pinned_state, menu, hide_taskbar);
         Ok(())
     }
 }
